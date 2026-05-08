@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SurfaceProfile" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/surfaces/surface_profile.gd" id="1_profile"]
+
+[resource]
+script = ExtResource("1_profile")
+id = &"slime"
+display_name = "Slime"
+color = Color(0.18, 0.85, 0.28, 1)
+acceleration_multiplier = 0.45
+friction_multiplier = 1.7
+max_speed_multiplier = 0.55
+jump_multiplier = 0.68
+bounce_multiplier = 0.0
+stickiness = 0.75
+visual_squash_multiplier = 1.25
+visual_stretch_multiplier = 1.35
+visual_drag_multiplier = 1.9
+skid_threshold_multiplier = 1.35

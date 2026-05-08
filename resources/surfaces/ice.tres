@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SurfaceProfile" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/surfaces/surface_profile.gd" id="1_profile"]
+
+[resource]
+script = ExtResource("1_profile")
+id = &"ice"
+display_name = "Ice"
+color = Color(0.45, 0.85, 1, 1)
+acceleration_multiplier = 0.55
+friction_multiplier = 0.08
+max_speed_multiplier = 1.18
+jump_multiplier = 1.0
+bounce_multiplier = 0.0
+stickiness = 0.0
+visual_squash_multiplier = 0.9
+visual_stretch_multiplier = 1.05
+visual_drag_multiplier = 1.35
+skid_threshold_multiplier = 0.45

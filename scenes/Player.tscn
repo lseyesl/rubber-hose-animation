@@ -1,0 +1,107 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_controller"]
+[ext_resource type="Resource" path="res://resources/surfaces/normal.tres" id="2_normal"]
+[ext_resource type="Script" path="res://scripts/player/surface_detector.gd" id="3_detector"]
+[ext_resource type="Script" path="res://scripts/player/toon_animator.gd" id="4_toon"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_player"]
+radius = 24.0
+height = 88.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_controller")
+default_surface = ExtResource("2_normal")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -44)
+shape = SubResource("CapsuleShape2D_player")
+
+[node name="SurfaceSensor" type="RayCast2D" parent="."]
+target_position = Vector2(0, 48)
+enabled = true
+script = ExtResource("3_detector")
+fallback_surface = ExtResource("2_normal")
+
+[node name="CameraTarget" type="Marker2D" parent="."]
+position = Vector2(0, -18)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(180, -140)
+enabled = true
+zoom = Vector2(0.9, 0.9)
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
+
+[node name="VisualRoot" type="Node2D" parent="."]
+position = Vector2(0, -52)
+script = ExtResource("4_toon")
+
+[node name="Body" type="Polygon2D" parent="VisualRoot"]
+color = Color(1, 0.62, 0.2, 1)
+polygon = PackedVector2Array(-18, -24, 18, -24, 22, 24, -22, 24)
+
+[node name="Head" type="Polygon2D" parent="VisualRoot"]
+position = Vector2(0, -38)
+color = Color(1, 0.72, 0.34, 1)
+polygon = PackedVector2Array(-20, -16, 20, -16, 21, 16, -21, 16)
+
+[node name="LeftArm" type="Line2D" parent="VisualRoot"]
+position = Vector2(-18, -16)
+points = PackedVector2Array(0, 0, -16, 20, -12, 42)
+width = 10.0
+default_color = Color(0.95, 0.5, 0.18, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="RightArm" type="Line2D" parent="VisualRoot"]
+position = Vector2(18, -16)
+points = PackedVector2Array(0, 0, 16, 20, 12, 42)
+width = 10.0
+default_color = Color(0.95, 0.5, 0.18, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="LeftLeg" type="Line2D" parent="VisualRoot"]
+position = Vector2(-10, 20)
+points = PackedVector2Array(0, 0, -5, 22, -3, 42)
+width = 12.0
+default_color = Color(0.92, 0.42, 0.14, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="RightLeg" type="Line2D" parent="VisualRoot"]
+position = Vector2(10, 20)
+points = PackedVector2Array(0, 0, 5, 22, 3, 42)
+width = 12.0
+default_color = Color(0.92, 0.42, 0.14, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="LeftFoot" type="Polygon2D" parent="VisualRoot"]
+position = Vector2(-13, 64)
+color = Color(0.22, 0.12, 0.08, 1)
+polygon = PackedVector2Array(-11, -4, 10, -4, 13, 5, -14, 5)
+
+[node name="RightFoot" type="Polygon2D" parent="VisualRoot"]
+position = Vector2(13, 64)
+color = Color(0.22, 0.12, 0.08, 1)
+polygon = PackedVector2Array(-10, -4, 11, -4, 14, 5, -13, 5)
+
+[node name="Eyes" type="Node2D" parent="VisualRoot/Head"]
+position = Vector2(0, -3)
+
+[node name="LeftEye" type="Polygon2D" parent="VisualRoot/Head/Eyes"]
+position = Vector2(-6, 0)
+color = Color(0.05, 0.04, 0.04, 1)
+polygon = PackedVector2Array(-2, -3, 3, -3, 3, 3, -2, 3)
+
+[node name="RightEye" type="Polygon2D" parent="VisualRoot/Head/Eyes"]
+position = Vector2(6, 0)
+color = Color(0.05, 0.04, 0.04, 1)
+polygon = PackedVector2Array(-3, -3, 2, -3, 2, 3, -3, 3)
