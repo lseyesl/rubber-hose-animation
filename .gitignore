@@ -4,6 +4,10 @@
 # Godot 4+ specific ignores
 .godot/
 .nomedia
+*.uid
+
+# macOS
+.DS_Store
 
 # Godot-specific ignores
 .import/
