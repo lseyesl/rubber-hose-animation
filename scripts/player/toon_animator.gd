@@ -615,7 +615,13 @@ func _apply_eye_expression(state: StringName, direction: float, speed_ratio: flo
 func _update_view(state: StringName) -> void:
 	var target_view: View = View.FRONT
 	match state:
-		&"run", &"jump", &"fall", &"skid", &"stuck":
+		&"run":
+			target_view = View.SIDE
+		&"jump", &"fall":
+			# Keep current view: if jumping/falling from run, stay side-view;
+			# if jumping/falling from idle, stay front-view.
+			target_view = current_view
+		&"skid", &"stuck":
 			target_view = View.SIDE
 		&"land", &"bounce":
 			# Land/bounce are brief transitional states — keep side-view if
