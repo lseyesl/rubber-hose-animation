@@ -44,11 +44,27 @@ script = ExtResource("4_toon")
 
 [node name="FrontDeco" type="Node2D" parent="VisualRoot"]
 
+[node name="LeftArmCoilShadow" type="Line2D" parent="VisualRoot/FrontDeco"]
+position = Vector2(-18, -13)
+points = PackedVector2Array(0, 0, -8, 7, 1, 14, -10, 21, -2, 28, -12, 36, -8, 45)
+width = 7.0
+default_color = Color(0.05, 0.05, 0.05, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
 [node name="LeftArmCoil" type="Line2D" parent="VisualRoot/FrontDeco"]
 position = Vector2(-20, -15)
 points = PackedVector2Array(0, 0, -8, 7, 1, 14, -10, 21, -2, 28, -12, 36, -8, 45)
 width = 5.0
 default_color = Color(0.76, 0.76, 0.72, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="RightArmCoilShadow" type="Line2D" parent="VisualRoot/FrontDeco"]
+position = Vector2(22, -15)
+points = PackedVector2Array(0, 0, 9, 7, -1, 14, 11, 21, 2, 28, 13, 36, 9, 45)
+width = 7.0
+default_color = Color(0.05, 0.05, 0.05, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 
@@ -104,12 +120,38 @@ polygon = PackedVector2Array(-3, -3, 3, -3, 4, 3, -4, 3)
 [node name="LeftGlove" type="Polygon2D" parent="VisualRoot/FrontDeco"]
 position = Vector2(-32, 31)
 color = Color(0.86, 0.86, 0.8, 1)
-polygon = PackedVector2Array(-15, -8, 7, -9, 16, 0, 12, 12, -8, 13, -18, 4)
+polygon = PackedVector2Array(-17, -9, 5, -11, 16, -2, 16, 9, 5, 15, -12, 14, -21, 5)
+
+[node name="LeftGloveThumb" type="Polygon2D" parent="VisualRoot/FrontDeco"]
+position = Vector2(-45, 27)
+color = Color(0.9, 0.9, 0.84, 1)
+polygon = PackedVector2Array(-2, -5, 9, -4, 12, 3, 5, 8, -5, 4)
+
+[node name="LeftGloveFingers" type="Line2D" parent="VisualRoot/FrontDeco"]
+position = Vector2(-31, 29)
+points = PackedVector2Array(-7, -6, -3, 6, 0, -7, 4, 6, 7, -5, 10, 4)
+width = 1.8
+default_color = Color(0.18, 0.18, 0.16, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="RightGlove" type="Polygon2D" parent="VisualRoot/FrontDeco"]
 position = Vector2(32, 31)
 color = Color(0.86, 0.86, 0.8, 1)
-polygon = PackedVector2Array(-7, -9, 15, -8, 18, 4, 8, 13, -12, 12, -16, 0)
+polygon = PackedVector2Array(-5, -11, 17, -9, 21, 5, 12, 14, -5, 15, -16, 9, -16, -2)
+
+[node name="RightGloveThumb" type="Polygon2D" parent="VisualRoot/FrontDeco"]
+position = Vector2(45, 27)
+color = Color(0.9, 0.9, 0.84, 1)
+polygon = PackedVector2Array(2, -5, -9, -4, -12, 3, -5, 8, 5, 4)
+
+[node name="RightGloveFingers" type="Line2D" parent="VisualRoot/FrontDeco"]
+position = Vector2(31, 29)
+points = PackedVector2Array(7, -6, 3, 6, 0, -7, -4, 6, -7, -5, -10, 4)
+width = 1.8
+default_color = Color(0.18, 0.18, 0.16, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="SideDeco" type="Node2D" parent="VisualRoot"]
 visible = false
@@ -133,7 +175,20 @@ end_cap_mode = 2
 [node name="SideGlove" type="Polygon2D" parent="VisualRoot/SideDeco"]
 position = Vector2(36, 31)
 color = Color(0.86, 0.86, 0.8, 1)
-polygon = PackedVector2Array(-8, -8, 10, -9, 14, 2, 8, 12, -10, 10, -14, 0)
+polygon = PackedVector2Array(-9, -9, 11, -10, 17, 0, 11, 12, -8, 12, -15, 2)
+
+[node name="SideGloveThumb" type="Polygon2D" parent="VisualRoot/SideDeco"]
+position = Vector2(48, 28)
+color = Color(0.9, 0.9, 0.84, 1)
+polygon = PackedVector2Array(-1, -5, 9, -3, 11, 4, 4, 8, -5, 3)
+
+[node name="SideGloveFingers" type="Line2D" parent="VisualRoot/SideDeco"]
+position = Vector2(38, 29)
+points = PackedVector2Array(-3, -6, 0, 6, 3, -7, 6, 5, 8, -5, 10, 3)
+width = 1.8
+default_color = Color(0.18, 0.18, 0.16, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="SideBib" type="Polygon2D" parent="VisualRoot/SideDeco"]
 position = Vector2(2, -7)
@@ -191,10 +246,36 @@ position = Vector2(-15, 64)
 color = Color(0.05, 0.05, 0.05, 1)
 polygon = PackedVector2Array(-17, -6, 10, -8, 18, 2, 10, 10, -20, 8)
 
+[node name="LeftBootSole" type="Polygon2D" parent="VisualRoot/LeftFoot"]
+position = Vector2(-1, 9)
+color = Color(0.01, 0.01, 0.01, 1)
+polygon = PackedVector2Array(-19, -2, 11, -2, 13, 3, -20, 4)
+
+[node name="LeftBootCleats" type="Line2D" parent="VisualRoot/LeftFoot"]
+position = Vector2(-2, 11)
+points = PackedVector2Array(-13, 0, -13, 4, -5, 0, -5, 4, 3, 0, 3, 4, 10, -1, 10, 3)
+width = 2.0
+default_color = Color(0.22, 0.22, 0.2, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
 [node name="RightFoot" type="Polygon2D" parent="VisualRoot"]
 position = Vector2(15, 64)
 color = Color(0.05, 0.05, 0.05, 1)
 polygon = PackedVector2Array(-10, -8, 17, -6, 20, 8, -10, 10, -18, 2)
+
+[node name="RightBootSole" type="Polygon2D" parent="VisualRoot/RightFoot"]
+position = Vector2(1, 9)
+color = Color(0.01, 0.01, 0.01, 1)
+polygon = PackedVector2Array(-11, -2, 20, -2, 21, 4, -13, 3)
+
+[node name="RightBootCleats" type="Line2D" parent="VisualRoot/RightFoot"]
+position = Vector2(2, 11)
+points = PackedVector2Array(-8, 0, -8, 4, 0, 0, 0, 4, 8, 0, 8, 4, 15, -1, 15, 3)
+width = 2.0
+default_color = Color(0.22, 0.22, 0.2, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="Head" type="Polygon2D" parent="VisualRoot"]
 position = Vector2(0, -39)
@@ -216,6 +297,14 @@ position = Vector2(0, -17)
 color = Color(0.28, 0.28, 0.28, 1)
 polygon = PackedVector2Array(-24, 2, -15, -15, 13, -17, 25, 0, 15, 7, -17, 7)
 
+[node name="HelmetBand" type="Line2D" parent="VisualRoot/Head"]
+position = Vector2(0, -17)
+points = PackedVector2Array(-18, -8, -6, -12, 8, -12, 19, -5)
+width = 2.0
+default_color = Color(0.55, 0.55, 0.5, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
 [node name="HelmetBrim" type="Polygon2D" parent="VisualRoot/Head"]
 position = Vector2(0, -10)
 color = Color(0.08, 0.08, 0.08, 1)
@@ -226,10 +315,26 @@ position = Vector2(6, -27)
 color = Color(0.9, 0.9, 0.78, 1)
 polygon = PackedVector2Array(-7, -6, 7, -6, 9, 6, -8, 7)
 
+[node name="LampRim" type="Line2D" parent="VisualRoot/Head"]
+position = Vector2(6, -27)
+points = PackedVector2Array(-7, -6, 7, -6, 9, 6, -8, 7, -7, -6)
+width = 2.0
+default_color = Color(0.06, 0.06, 0.06, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
 [node name="LampGlow" type="Polygon2D" parent="VisualRoot/Head"]
 position = Vector2(17, -29)
 color = Color(1, 1, 0.85, 0.45)
 polygon = PackedVector2Array(0, -2, 15, -8, 15, -4, 0, 3)
+
+[node name="LampBeam" type="Line2D" parent="VisualRoot/Head"]
+position = Vector2(18, -29)
+points = PackedVector2Array(0, 0, 12, -9, 2, 5, 15, 3)
+width = 2.0
+default_color = Color(0.95, 0.95, 0.82, 0.75)
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="Eyes" type="Node2D" parent="VisualRoot/Head"]
 position = Vector2(1, -1)
@@ -244,10 +349,20 @@ position = Vector2(9, 0)
 color = Color(0.03, 0.03, 0.03, 1)
 polygon = PackedVector2Array(-4, -8, 3, -8, 4, 7, -5, 7)
 
+[node name="Nose" type="Polygon2D" parent="VisualRoot/Head"]
+position = Vector2(10, 7)
+color = Color(0.86, 0.86, 0.78, 1)
+polygon = PackedVector2Array(-6, -5, 5, -6, 10, 1, 6, 8, -5, 7, -9, 1)
+
 [node name="Mouth" type="Polygon2D" parent="VisualRoot/Head"]
 position = Vector2(1, 13)
 color = Color(0.04, 0.04, 0.04, 1)
-polygon = PackedVector2Array(-10, -4, 10, -4, 7, 7, -5, 9)
+polygon = PackedVector2Array(-12, -5, 12, -5, 9, 8, -6, 10)
+
+[node name="Tooth" type="Polygon2D" parent="VisualRoot/Head"]
+position = Vector2(1, 14)
+color = Color(0.92, 0.92, 0.84, 1)
+polygon = PackedVector2Array(-7, -3, 4, -3, 3, 2, -5, 3)
 
 [node name="Cheek" type="Polygon2D" parent="VisualRoot/Head"]
 position = Vector2(15, 8)
