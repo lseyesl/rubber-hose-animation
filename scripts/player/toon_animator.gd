@@ -55,8 +55,11 @@ var _front_base_helmet_brim_position := Vector2.ZERO
 var _front_base_head_lamp_position := Vector2.ZERO
 var _front_base_lamp_glow_position := Vector2.ZERO
 var _front_base_helmet_band_position := Vector2.ZERO
+var _front_base_helmet_groove_left_position := Vector2.ZERO
+var _front_base_helmet_groove_right_position := Vector2.ZERO
 var _front_base_lamp_rim_position := Vector2.ZERO
 var _front_base_lamp_beam_position := Vector2.ZERO
+var _front_base_lamp_shine_position := Vector2.ZERO
 var _front_base_mouth_position := Vector2.ZERO
 var _front_base_nose_position := Vector2.ZERO
 var _front_base_tooth_position := Vector2.ZERO
@@ -67,6 +70,8 @@ var _front_base_left_boot_sole_position := Vector2.ZERO
 var _front_base_right_boot_sole_position := Vector2.ZERO
 var _front_base_left_boot_cleats_position := Vector2.ZERO
 var _front_base_right_boot_cleats_position := Vector2.ZERO
+var _front_base_left_boot_highlight_position := Vector2.ZERO
+var _front_base_right_boot_highlight_position := Vector2.ZERO
 
 # Side-view base data (hardcoded, facing right)
 var _side_base_body_position := Vector2(2, 0)
@@ -93,8 +98,11 @@ var _side_base_helmet_brim_position := Vector2(4, -10)
 var _side_base_head_lamp_position := Vector2(12, -27)
 var _side_base_lamp_glow_position := Vector2(22, -29)
 var _side_base_helmet_band_position := Vector2(4, -17)
+var _side_base_helmet_groove_left_position := Vector2(3, -17)
+var _side_base_helmet_groove_right_position := Vector2(3, -17)
 var _side_base_lamp_rim_position := Vector2(12, -27)
 var _side_base_lamp_beam_position := Vector2(25, -29)
+var _side_base_lamp_shine_position := Vector2(13, -27)
 var _side_base_mouth_position := Vector2(5, 13)
 var _side_base_nose_position := Vector2(15, 7)
 var _side_base_tooth_position := Vector2(7, 14)
@@ -105,6 +113,8 @@ var _side_base_left_boot_sole_position := Vector2(-2, 8)
 var _side_base_right_boot_sole_position := Vector2(2, 8)
 var _side_base_left_boot_cleats_position := Vector2(-3, 10)
 var _side_base_right_boot_cleats_position := Vector2(3, 10)
+var _side_base_left_boot_highlight_position := Vector2(-3, -1)
+var _side_base_right_boot_highlight_position := Vector2(3, -1)
 
 # Active base data (points to either front or side set)
 var _base_body_position := Vector2.ZERO
@@ -126,6 +136,7 @@ var _side_base_glove_position := Vector2.ZERO
 var _side_base_glove_thumb_position := Vector2.ZERO
 var _side_base_glove_fingers_position := Vector2.ZERO
 var _side_base_leg_coil_position := Vector2.ZERO
+var _side_base_coil_highlight_position := Vector2.ZERO
 
 
 func _ready() -> void:
@@ -242,12 +253,21 @@ func _store_base_visuals() -> void:
 		var band := head.get_node_or_null("HelmetBand") as Line2D
 		if band != null:
 			_front_base_helmet_band_position = band.position
+		var groove_left := head.get_node_or_null("HelmetGrooveLeft") as Line2D
+		if groove_left != null:
+			_front_base_helmet_groove_left_position = groove_left.position
+		var groove_right := head.get_node_or_null("HelmetGrooveRight") as Line2D
+		if groove_right != null:
+			_front_base_helmet_groove_right_position = groove_right.position
 		var rim := head.get_node_or_null("LampRim") as Line2D
 		if rim != null:
 			_front_base_lamp_rim_position = rim.position
 		var beam := head.get_node_or_null("LampBeam") as Line2D
 		if beam != null:
 			_front_base_lamp_beam_position = beam.position
+		var shine := head.get_node_or_null("LampShine") as Polygon2D
+		if shine != null:
+			_front_base_lamp_shine_position = shine.position
 		var mouth := head.get_node_or_null("Mouth") as Polygon2D
 		if mouth != null:
 			_front_base_mouth_position = mouth.position
@@ -273,6 +293,9 @@ func _store_base_visuals() -> void:
 		var left_cleats := left_foot.get_node_or_null("LeftBootCleats") as Line2D
 		if left_cleats != null:
 			_front_base_left_boot_cleats_position = left_cleats.position
+		var left_highlight := left_foot.get_node_or_null("LeftBootHighlight") as Line2D
+		if left_highlight != null:
+			_front_base_left_boot_highlight_position = left_highlight.position
 	if right_foot != null:
 		var right_sole := right_foot.get_node_or_null("RightBootSole") as Polygon2D
 		if right_sole != null:
@@ -280,6 +303,9 @@ func _store_base_visuals() -> void:
 		var right_cleats := right_foot.get_node_or_null("RightBootCleats") as Line2D
 		if right_cleats != null:
 			_front_base_right_boot_cleats_position = right_cleats.position
+		var right_highlight := right_foot.get_node_or_null("RightBootHighlight") as Line2D
+		if right_highlight != null:
+			_front_base_right_boot_highlight_position = right_highlight.position
 
 	# --- Side-view base data (hardcoded, facing right) ---
 	# Back arm (LeftArm node) — hangs behind body
@@ -304,6 +330,9 @@ func _store_base_visuals() -> void:
 		var arm_coil := side_deco.get_node_or_null("SideArmCoil") as Line2D
 		if arm_coil != null:
 			_side_base_arm_coil_position = arm_coil.position
+		var coil_highlight := side_deco.get_node_or_null("SideCoilHighlight") as Line2D
+		if coil_highlight != null:
+			_side_base_coil_highlight_position = coil_highlight.position
 		var leg_coil := side_deco.get_node_or_null("SideLegCoil") as Line2D
 		if leg_coil != null:
 			_side_base_leg_coil_position = leg_coil.position
@@ -465,6 +494,9 @@ func _apply_side_deco_swing(front_swing: float, back_swing: float) -> void:
 	var arm_coil := side_deco.get_node_or_null("SideArmCoil") as Line2D
 	if arm_coil != null:
 		arm_coil.position = Vector2(_side_base_arm_coil_position.x, _side_base_arm_coil_position.y + arm_y_offset)
+	var coil_highlight := side_deco.get_node_or_null("SideCoilHighlight") as Line2D
+	if coil_highlight != null:
+		coil_highlight.position = Vector2(_side_base_coil_highlight_position.x, _side_base_coil_highlight_position.y + arm_y_offset)
 	var glove := side_deco.get_node_or_null("SideGlove") as Polygon2D
 	if glove != null:
 		glove.position = Vector2(_side_base_glove_position.x, _side_base_glove_position.y + front_swing)
@@ -665,8 +697,11 @@ func _apply_view() -> void:
 		if glow != null:
 			glow.position = _side_base_lamp_glow_position if is_side else _front_base_lamp_glow_position
 		_set_head_detail_transform("HelmetBand", _side_base_helmet_band_position if is_side else _front_base_helmet_band_position, 1.0)
+		_set_head_detail_transform("HelmetGrooveLeft", _side_base_helmet_groove_left_position if is_side else _front_base_helmet_groove_left_position, 1.0)
+		_set_head_detail_transform("HelmetGrooveRight", _side_base_helmet_groove_right_position if is_side else _front_base_helmet_groove_right_position, 1.0)
 		_set_head_detail_transform("LampRim", _side_base_lamp_rim_position if is_side else _front_base_lamp_rim_position, 1.0)
 		_set_head_detail_transform("LampBeam", _side_base_lamp_beam_position if is_side else _front_base_lamp_beam_position, 1.0)
+		_set_head_detail_transform("LampShine", _side_base_lamp_shine_position if is_side else _front_base_lamp_shine_position, 1.0)
 		var mouth := head.get_node_or_null("Mouth") as Polygon2D
 		if mouth != null:
 			mouth.position = _side_base_mouth_position if is_side else _front_base_mouth_position
@@ -740,8 +775,11 @@ func _mirror_side_view(direction: float) -> void:
 			if glow != null:
 				glow.position = _side_base_lamp_glow_position
 			_set_head_detail_transform("HelmetBand", _side_base_helmet_band_position, 1.0)
+			_set_head_detail_transform("HelmetGrooveLeft", _side_base_helmet_groove_left_position, 1.0)
+			_set_head_detail_transform("HelmetGrooveRight", _side_base_helmet_groove_right_position, 1.0)
 			_set_head_detail_transform("LampRim", _side_base_lamp_rim_position, 1.0)
 			_set_head_detail_transform("LampBeam", _side_base_lamp_beam_position, 1.0)
+			_set_head_detail_transform("LampShine", _side_base_lamp_shine_position, 1.0)
 			var mouth := head.get_node_or_null("Mouth") as Polygon2D
 			if mouth != null:
 				mouth.position = _side_base_mouth_position
@@ -796,8 +834,11 @@ func _mirror_side_view(direction: float) -> void:
 			if glow != null:
 				glow.position = Vector2(-_side_base_lamp_glow_position.x, _side_base_lamp_glow_position.y)
 			_set_head_detail_transform("HelmetBand", Vector2(-_side_base_helmet_band_position.x, _side_base_helmet_band_position.y), -1.0)
+			_set_head_detail_transform("HelmetGrooveLeft", Vector2(-_side_base_helmet_groove_left_position.x, _side_base_helmet_groove_left_position.y), -1.0)
+			_set_head_detail_transform("HelmetGrooveRight", Vector2(-_side_base_helmet_groove_right_position.x, _side_base_helmet_groove_right_position.y), -1.0)
 			_set_head_detail_transform("LampRim", Vector2(-_side_base_lamp_rim_position.x, _side_base_lamp_rim_position.y), -1.0)
 			_set_head_detail_transform("LampBeam", Vector2(-_side_base_lamp_beam_position.x, _side_base_lamp_beam_position.y), -1.0)
+			_set_head_detail_transform("LampShine", Vector2(-_side_base_lamp_shine_position.x, _side_base_lamp_shine_position.y), -1.0)
 			var mouth := head.get_node_or_null("Mouth") as Polygon2D
 			if mouth != null:
 				mouth.position = Vector2(-_side_base_mouth_position.x, _side_base_mouth_position.y)
@@ -833,13 +874,17 @@ func _apply_boot_detail_view(is_side: bool, mirror: float) -> void:
 	if is_side:
 		_set_foot_detail_transform(left_foot, &"LeftBootSole", _side_base_left_boot_sole_position, mirror)
 		_set_foot_detail_transform(left_foot, &"LeftBootCleats", _side_base_left_boot_cleats_position, mirror)
+		_set_foot_detail_transform(left_foot, &"LeftBootHighlight", _side_base_left_boot_highlight_position, mirror)
 		_set_foot_detail_transform(right_foot, &"RightBootSole", _side_base_right_boot_sole_position, mirror)
 		_set_foot_detail_transform(right_foot, &"RightBootCleats", _side_base_right_boot_cleats_position, mirror)
+		_set_foot_detail_transform(right_foot, &"RightBootHighlight", _side_base_right_boot_highlight_position, mirror)
 		return
 	_set_foot_detail_transform(left_foot, &"LeftBootSole", _front_base_left_boot_sole_position, 1.0)
 	_set_foot_detail_transform(left_foot, &"LeftBootCleats", _front_base_left_boot_cleats_position, 1.0)
+	_set_foot_detail_transform(left_foot, &"LeftBootHighlight", _front_base_left_boot_highlight_position, 1.0)
 	_set_foot_detail_transform(right_foot, &"RightBootSole", _front_base_right_boot_sole_position, 1.0)
 	_set_foot_detail_transform(right_foot, &"RightBootCleats", _front_base_right_boot_cleats_position, 1.0)
+	_set_foot_detail_transform(right_foot, &"RightBootHighlight", _front_base_right_boot_highlight_position, 1.0)
 
 
 func _set_foot_detail_transform(foot: Polygon2D, child_name: StringName, position: Vector2, mirror: float) -> void:
