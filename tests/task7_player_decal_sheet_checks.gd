@@ -4,9 +4,28 @@ var failures: Array[String] = []
 
 
 func _initialize() -> void:
+	_check_player_profile_real_transparency()
 	_check_player_local_decals()
 	_check_item_sheet_scene()
 	_finish()
+
+
+func _check_player_profile_real_transparency() -> void:
+	var profile_image := _load_texture_image("res://docs/assets/player_profile.png")
+	_assert(profile_image != null, "player_profile.png should load as an image")
+	if profile_image == null:
+		return
+
+	var transparent_samples := [
+		Vector2i(0, 0),
+		Vector2i(profile_image.get_width() - 1, 0),
+		Vector2i(0, profile_image.get_height() - 1),
+		Vector2i(profile_image.get_width() - 1, profile_image.get_height() - 1),
+		Vector2i(32, 32),
+	]
+	for sample: Vector2i in transparent_samples:
+		var pixel := profile_image.get_pixelv(sample)
+		_assert(pixel.a < 0.01, "player_profile.png background pixel %s should be truly transparent, got alpha %.3f" % [sample, pixel.a])
 
 
 func _check_player_local_decals() -> void:
@@ -62,25 +81,25 @@ func _check_player_local_decals() -> void:
 	_assert(player.get_node_or_null("VisualRoot/LeftFoot/BootSprite") is Sprite2D, "Left boot should be image-based")
 	_assert(player.get_node_or_null("VisualRoot/RightFoot/BootSprite") is Sprite2D, "Right boot should be image-based")
 
-	_assert_tight_region(player, "VisualRoot/Body/TorsoSprite", Vector2(165, 285))
-	_assert_tight_region(player, "VisualRoot/Body/FrontSprite", Vector2(165, 285))
-	_assert_tight_region(player, "VisualRoot/Body/SideSprite", Vector2(125, 285))
-	_assert_tight_region(player, "VisualRoot/Head/HeadSprite", Vector2(250, 275))
-	_assert_tight_region(player, "VisualRoot/Head/FrontSprite", Vector2(250, 275))
-	_assert_tight_region(player, "VisualRoot/Head/SideSprite", Vector2(250, 270))
-	_assert_tight_region(player, "VisualRoot/Head/Eyes/LeftEye/LeftEyeSprite", Vector2(45, 80))
-	_assert_tight_region(player, "VisualRoot/Head/Eyes/RightEye/RightEyeSprite", Vector2(45, 80))
-	_assert_tight_region(player, "VisualRoot/Head/Eyebrows/LeftBrowSprite", Vector2(110, 30))
-	_assert_tight_region(player, "VisualRoot/Head/Eyebrows/RightBrowSprite", Vector2(110, 30))
-	_assert_tight_region(player, "VisualRoot/Head/Mouth/MouthSprite", Vector2(85, 70))
-	_assert_tight_region(player, "VisualRoot/LeftArm/ArmSprite", Vector2(115, 190))
-	_assert_tight_region(player, "VisualRoot/RightArm/ArmSprite", Vector2(115, 190))
-	_assert_tight_region(player, "VisualRoot/LeftHand/HandSprite", Vector2(105, 110))
-	_assert_tight_region(player, "VisualRoot/RightHand/HandSprite", Vector2(105, 110))
-	_assert_tight_region(player, "VisualRoot/LeftLeg/LegSprite", Vector2(70, 90))
-	_assert_tight_region(player, "VisualRoot/RightLeg/LegSprite", Vector2(70, 90))
-	_assert_tight_region(player, "VisualRoot/LeftFoot/BootSprite", Vector2(140, 120))
-	_assert_tight_region(player, "VisualRoot/RightFoot/BootSprite", Vector2(140, 120))
+	_assert_part_texture(player, "VisualRoot/Body/TorsoSprite", "res://resources/player/parts/torso_front.png")
+	_assert_part_texture(player, "VisualRoot/Body/FrontSprite", "res://resources/player/parts/torso_front.png")
+	_assert_part_texture(player, "VisualRoot/Body/SideSprite", "res://resources/player/parts/torso_side.png")
+	_assert_part_texture(player, "VisualRoot/Head/HeadSprite", "res://resources/player/parts/head_front.png")
+	_assert_part_texture(player, "VisualRoot/Head/FrontSprite", "res://resources/player/parts/head_front.png")
+	_assert_part_texture(player, "VisualRoot/Head/SideSprite", "res://resources/player/parts/head_side.png")
+	_assert_part_texture(player, "VisualRoot/Head/Eyes/LeftEye/LeftEyeSprite", "res://resources/player/parts/eye_left.png", false)
+	_assert_part_texture(player, "VisualRoot/Head/Eyes/RightEye/RightEyeSprite", "res://resources/player/parts/eye_right.png", false)
+	_assert_part_texture(player, "VisualRoot/Head/Eyebrows/LeftBrowSprite", "res://resources/player/parts/brow_left.png", false)
+	_assert_part_texture(player, "VisualRoot/Head/Eyebrows/RightBrowSprite", "res://resources/player/parts/brow_right.png", false)
+	_assert_part_texture(player, "VisualRoot/Head/Mouth/MouthSprite", "res://resources/player/parts/mouth.png", false)
+	_assert_part_texture(player, "VisualRoot/LeftArm/ArmSprite", "res://resources/player/parts/arm_front.png")
+	_assert_part_texture(player, "VisualRoot/RightArm/ArmSprite", "res://resources/player/parts/arm_front.png")
+	_assert_part_texture(player, "VisualRoot/LeftHand/HandSprite", "res://resources/player/parts/hand_front.png")
+	_assert_part_texture(player, "VisualRoot/RightHand/HandSprite", "res://resources/player/parts/hand_front.png")
+	_assert_part_texture(player, "VisualRoot/LeftLeg/LegSprite", "res://resources/player/parts/leg_front.png")
+	_assert_part_texture(player, "VisualRoot/RightLeg/LegSprite", "res://resources/player/parts/leg_front.png")
+	_assert_part_texture(player, "VisualRoot/LeftFoot/BootSprite", "res://resources/player/parts/boot_front.png")
+	_assert_part_texture(player, "VisualRoot/RightFoot/BootSprite", "res://resources/player/parts/boot_front.png")
 
 	player.free()
 
@@ -120,6 +139,42 @@ func _assert_tight_region(root_node: Node, path: String, max_size: Vector2) -> v
 		return
 	_assert(sprite.region_enabled, "%s should use a cropped atlas region" % path)
 	_assert(sprite.region_rect.size.x <= max_size.x and sprite.region_rect.size.y <= max_size.y, "%s region should be tightly cropped, got %s max %s" % [path, sprite.region_rect.size, max_size])
+
+
+func _assert_part_texture(root_node: Node, path: String, expected_path: String, should_have_transparent_background := true) -> void:
+	var sprite := root_node.get_node_or_null(path) as Sprite2D
+	if sprite == null:
+		return
+	_assert(not sprite.region_enabled, "%s should use a standalone sliced texture, not Sprite2D.region_rect" % path)
+	_assert(sprite.texture != null, "%s should have a standalone part texture" % path)
+	if sprite.texture != null:
+		_assert(sprite.texture.resource_path == expected_path, "%s should use %s, got %s" % [path, expected_path, sprite.texture.resource_path])
+		if should_have_transparent_background:
+			_assert_part_image_has_transparency(expected_path)
+
+
+func _assert_part_image_has_transparency(part_path: String) -> void:
+	var part_image := _load_texture_image(part_path)
+	_assert(part_image != null, "%s should load as a sliced image" % part_path)
+	if part_image == null:
+		return
+
+	var has_transparent_pixel := false
+	for y in part_image.get_height():
+		for x in part_image.get_width():
+			if part_image.get_pixel(x, y).a < 0.01:
+				has_transparent_pixel = true
+				break
+		if has_transparent_pixel:
+			break
+	_assert(has_transparent_pixel, "%s should preserve real transparent background pixels after slicing" % part_path)
+
+
+func _load_texture_image(path: String) -> Image:
+	var texture := load(path) as Texture2D
+	if texture == null:
+		return null
+	return texture.get_image()
 
 
 func _finish() -> void:
