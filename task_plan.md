@@ -12,7 +12,8 @@
 - 阶段 6：按“局部 sprite/decal 增强”重新收束方案 — complete
 - 阶段 7：将 B/C 阶段方案写入文档 — complete
 - 阶段 8：实施 B 方案 local decal + UI sprite sheet — complete
-- 阶段 9：根据用户反馈改向 D image-part rig — in_progress
+- 阶段 9：根据用户反馈改向 D image-part rig — complete
+- 阶段 10：实施 D image-part rig — complete
 
 ## 约束与决策
 - 先做方案规划，不直接修改 player 实现。
@@ -40,6 +41,11 @@
 - 用户明确要求：手、胳膊、头、眼睛、眉毛、嘴、躯干、腿等主体部件都应使用图片实现。
 - 旧 B/C 文档作为历史记录保留，但后续实现以 D image-part rig 为准。
 - `ToonAnimator` 应从“修改 polygon/line 外形”转为“驱动 Node2D/Sprite2D 部件 rig”。
+
+## D 方案实施结果
+- `Player.tscn` 主体部件改为 `Node2D` 控制柄 + `Sprite2D` 图片子部件。
+- `ToonAnimator` 改为驱动控制柄 transform，不再依赖核心部件的 polygon/points。
+- 测试更新为要求 torso/head/eyes/brows/mouth/arms/hands/legs/boots 图片化。
 
 ## 输出文件
 - `docs/superpowers/specs/2026-05-12-player-display-replan.md`

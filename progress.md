@@ -22,3 +22,5 @@
 - 验证通过：`task3_player_checks.gd`、`task4_toon_animator_checks.gd`、`task5_readability_checks.gd`、`task6_miner_visual_checks.gd`、`task7_player_decal_sheet_checks.gd`、`godot --headless --quit`。
 - 用户反馈 B 方案仍不满足：程序化主体会导致 player 与概念图差距过大；手、胳膊、头、眼睛、眉毛、嘴、躯干、腿等都应使用图片实现。
 - 已新增 D 方案设计文档：`docs/superpowers/specs/2026-05-12-player-image-part-rig-redesign.md`。
+- 已实施 D image-part rig：`Player.tscn` 的 Body/Head/Arms/Hands/Legs/Feet 改为 `Node2D` handles + `Sprite2D` image parts；`toon_animator.gd` 改为 transform-handle animator。
+- 已验证：GDScript LSP 对 `toon_animator.gd`、`task6_miner_visual_checks.gd`、`task7_player_decal_sheet_checks.gd` 无诊断；Godot task3-task7 与 headless quit 全部通过。
