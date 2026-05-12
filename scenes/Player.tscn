@@ -54,6 +54,11 @@ position = Vector2(18, -15)
 color = Color(0.92, 0.92, 0.82, 0.24)
 polygon = PackedVector2Array(-1, -2, 2, -1, 1, 2, -2, 1)
 
+[node name="DustFleckDecal" type="Polygon2D" parent="VisualRoot/FilmGrain"]
+position = Vector2(-4, -28)
+color = Color(0.95, 0.84, 0.46, 0.18)
+polygon = PackedVector2Array(-2, -1, 3, -2, 2, 2, -3, 1)
+
 [node name="VerticalScratch" type="Line2D" parent="VisualRoot/FilmGrain"]
 position = Vector2(26, -49)
 points = PackedVector2Array(0, 0, -1, 16, 1, 34, 0, 54)
@@ -213,6 +218,29 @@ default_color = Color(0.2, 0.2, 0.18, 0.62)
 begin_cap_mode = 2
 end_cap_mode = 2
 
+[node name="LocalDecals" type="Node2D" parent="VisualRoot/FrontDeco"]
+
+[node name="LeftGlovePalmDecal" type="Line2D" parent="VisualRoot/FrontDeco/LocalDecals"]
+position = Vector2(-33, 32)
+points = PackedVector2Array(-9, 0, -2, 3, 5, 1, 10, 5)
+width = 1.2
+default_color = Color(0.12, 0.1, 0.08, 0.7)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="RightGlovePalmDecal" type="Line2D" parent="VisualRoot/FrontDeco/LocalDecals"]
+position = Vector2(33, 32)
+points = PackedVector2Array(9, 0, 2, 3, -5, 1, -10, 5)
+width = 1.2
+default_color = Color(0.12, 0.1, 0.08, 0.7)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="OverallPatchDecal" type="Polygon2D" parent="VisualRoot/FrontDeco/LocalDecals"]
+position = Vector2(5, -1)
+color = Color(0.12, 0.2, 0.34, 0.55)
+polygon = PackedVector2Array(-4, -5, 5, -4, 4, 5, -5, 4)
+
 [node name="SideDeco" type="Node2D" parent="VisualRoot"]
 visible = false
 
@@ -281,6 +309,21 @@ position = Vector2(3, 7)
 color = Color(0.9, 0.9, 0.82, 1)
 polygon = PackedVector2Array(-3, -3, 3, -3, 4, 3, -4, 3)
 
+[node name="LocalDecals" type="Node2D" parent="VisualRoot/SideDeco"]
+
+[node name="SideGlovePalmDecal" type="Line2D" parent="VisualRoot/SideDeco/LocalDecals"]
+position = Vector2(38, 32)
+points = PackedVector2Array(-8, 0, -1, 3, 7, 2)
+width = 1.2
+default_color = Color(0.12, 0.1, 0.08, 0.7)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="SideOverallPatchDecal" type="Polygon2D" parent="VisualRoot/SideDeco/LocalDecals"]
+position = Vector2(3, -1)
+color = Color(0.12, 0.2, 0.34, 0.55)
+polygon = PackedVector2Array(-4, -5, 5, -4, 4, 5, -5, 4)
+
 [node name="LeftArm" type="Line2D" parent="VisualRoot"]
 position = Vector2(-18, -16)
 points = PackedVector2Array(0, 0, -16, 20, -12, 42)
@@ -343,6 +386,16 @@ default_color = Color(0.7, 0.7, 0.62, 0.54)
 begin_cap_mode = 2
 end_cap_mode = 2
 
+[node name="LocalDecals" type="Node2D" parent="VisualRoot/LeftFoot"]
+
+[node name="LeftBootTreadDecal" type="Line2D" parent="VisualRoot/LeftFoot/LocalDecals"]
+position = Vector2(-3, 7)
+points = PackedVector2Array(-14, 0, -8, 2, -2, 0, 4, 2, 11, 0)
+width = 1.4
+default_color = Color(0.46, 0.32, 0.16, 0.82)
+begin_cap_mode = 2
+end_cap_mode = 2
+
 [node name="RightFoot" type="Polygon2D" parent="VisualRoot"]
 position = Vector2(15, 64)
 color = Color(0.05, 0.05, 0.05, 1)
@@ -366,6 +419,16 @@ position = Vector2(4, -1)
 points = PackedVector2Array(-9, -2, 0, -5, 9, -2)
 width = 1.7
 default_color = Color(0.7, 0.7, 0.62, 0.54)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="LocalDecals" type="Node2D" parent="VisualRoot/RightFoot"]
+
+[node name="RightBootTreadDecal" type="Line2D" parent="VisualRoot/RightFoot/LocalDecals"]
+position = Vector2(3, 7)
+points = PackedVector2Array(14, 0, 8, 2, 2, 0, -4, 2, -11, 0)
+width = 1.4
+default_color = Color(0.46, 0.32, 0.16, 0.82)
 begin_cap_mode = 2
 end_cap_mode = 2
 
@@ -481,3 +544,26 @@ polygon = PackedVector2Array(-7, -3, 4, -3, 3, 2, -5, 3)
 position = Vector2(15, 8)
 color = Color(0.9, 0.9, 0.82, 1)
 polygon = PackedVector2Array(-5, -4, 6, -5, 7, 4, -4, 6)
+
+[node name="LocalDecals" type="Node2D" parent="VisualRoot/Head"]
+
+[node name="HeadlampGlassDecal" type="Polygon2D" parent="VisualRoot/Head/LocalDecals"]
+position = Vector2(7, -27)
+color = Color(1, 0.94, 0.48, 0.5)
+polygon = PackedVector2Array(-4, -3, 5, -4, 6, 2, -5, 3)
+
+[node name="HelmetScratchDecal" type="Line2D" parent="VisualRoot/Head/LocalDecals"]
+position = Vector2(-3, -25)
+points = PackedVector2Array(-11, 0, -4, -2, 3, -1, 10, -3)
+width = 1.1
+default_color = Color(0.78, 0.62, 0.38, 0.55)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="SmileExpressionDecal" type="Line2D" parent="VisualRoot/Head/LocalDecals"]
+position = Vector2(1, 13)
+points = PackedVector2Array(-10, -3, -2, 1, 8, -2)
+width = 1.3
+default_color = Color(0.98, 0.88, 0.62, 0.45)
+begin_cap_mode = 2
+end_cap_mode = 2

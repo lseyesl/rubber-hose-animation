@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://docs/assets/player_profile.png" id="1_profile"]
+
+[node name="PlayerItemSheet" type="Node2D"]
+
+[node name="Portrait" type="Sprite2D" parent="."]
+position = Vector2(0, 0)
+texture = ExtResource("1_profile")
+region_enabled = true
+region_rect = Rect2(0, 0, 540, 760)
+scale = Vector2(0.16, 0.16)
+
+[node name="HelmetIcon" type="Sprite2D" parent="."]
+position = Vector2(96, 0)
+texture = ExtResource("1_profile")
+region_enabled = true
+region_rect = Rect2(0, 760, 220, 180)
+scale = Vector2(0.24, 0.24)
+
+[node name="GloveIcon" type="Sprite2D" parent="."]
+position = Vector2(160, 0)
+texture = ExtResource("1_profile")
+region_enabled = true
+region_rect = Rect2(220, 760, 200, 180)
+scale = Vector2(0.24, 0.24)
+
+[node name="BootIcon" type="Sprite2D" parent="."]
+position = Vector2(224, 0)
+texture = ExtResource("1_profile")
+region_enabled = true
+region_rect = Rect2(420, 760, 220, 190)
+scale = Vector2(0.24, 0.24)
+
+[node name="PickaxeIcon" type="Sprite2D" parent="."]
+position = Vector2(288, 0)
+texture = ExtResource("1_profile")
+region_enabled = true
+region_rect = Rect2(640, 760, 220, 220)
+scale = Vector2(0.22, 0.22)
+
+[node name="LanternIcon" type="Sprite2D" parent="."]
+position = Vector2(352, 0)
+texture = ExtResource("1_profile")
+region_enabled = true
+region_rect = Rect2(860, 760, 190, 220)
+scale = Vector2(0.22, 0.22)
+
+[node name="MineCartIcon" type="Sprite2D" parent="."]
+position = Vector2(432, 0)
+texture = ExtResource("1_profile")
+region_enabled = true
+region_rect = Rect2(1050, 760, 300, 220)
+scale = Vector2(0.22, 0.22)
