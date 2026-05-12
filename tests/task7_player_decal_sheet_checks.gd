@@ -39,6 +39,11 @@ func _check_player_local_decals() -> void:
 	_assert(player.get_node_or_null("VisualRoot/Head") is Polygon2D, "Head should remain a procedural Polygon2D anchor")
 	_assert(player.get_node_or_null("VisualRoot/LeftArm") is Line2D, "LeftArm should remain a procedural Line2D anchor")
 	_assert(player.get_node_or_null("VisualRoot/RightArm") is Line2D, "RightArm should remain a procedural Line2D anchor")
+	_assert(player.get_node_or_null("VisualRoot/LeftLeg") is Line2D, "LeftLeg should remain a procedural Line2D anchor")
+	_assert(player.get_node_or_null("VisualRoot/RightLeg") is Line2D, "RightLeg should remain a procedural Line2D anchor")
+	_assert(player.get_node_or_null("VisualRoot/LeftFoot") is Polygon2D, "LeftFoot should remain a procedural Polygon2D anchor")
+	_assert(player.get_node_or_null("VisualRoot/RightFoot") is Polygon2D, "RightFoot should remain a procedural Polygon2D anchor")
+	_assert(player.get_node_or_null("VisualRoot/Head/Eyes") is Node2D, "Head/Eyes should remain a procedural expression anchor")
 
 	player.free()
 
