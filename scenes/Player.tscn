@@ -243,20 +243,6 @@ scale = Vector2(0.19, 0.19)
 [node name="Eyes" type="Node2D" parent="VisualRoot/Head"]
 position = Vector2(1, -1)
 
-[node name="LeftEyeSprite" type="Sprite2D" parent="VisualRoot/Head/Eyes"]
-position = Vector2(-8, 0)
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(275, 86, 60, 100)
-scale = Vector2(0.16, 0.16)
-
-[node name="RightEyeSprite" type="Sprite2D" parent="VisualRoot/Head/Eyes"]
-position = Vector2(9, 0)
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(350, 86, 60, 100)
-scale = Vector2(0.16, 0.16)
-
 [node name="LeftEye" type="Node2D" parent="VisualRoot/Head/Eyes"]
 position = Vector2(-8, 0)
 
@@ -296,13 +282,6 @@ scale = Vector2(0.14, 0.14)
 position = Vector2(1, 13)
 
 [node name="MouthSprite" type="Sprite2D" parent="VisualRoot/Head/Mouth"]
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(295, 160, 130, 80)
-scale = Vector2(0.18, 0.18)
-
-[node name="MouthSprite" type="Sprite2D" parent="VisualRoot/Head"]
-position = Vector2(1, 13)
 texture = ExtResource("5_profile")
 region_enabled = true
 region_rect = Rect2(295, 160, 130, 80)
