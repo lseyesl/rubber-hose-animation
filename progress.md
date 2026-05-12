@@ -24,3 +24,13 @@
 - 已新增 D 方案设计文档：`docs/superpowers/specs/2026-05-12-player-image-part-rig-redesign.md`。
 - 已实施 D image-part rig：`Player.tscn` 的 Body/Head/Arms/Hands/Legs/Feet 改为 `Node2D` handles + `Sprite2D` image parts；`toon_animator.gd` 改为 transform-handle animator。
 - 已验证：GDScript LSP 对 `toon_animator.gd`、`task6_miner_visual_checks.gd`、`task7_player_decal_sheet_checks.gd` 无诊断；Godot task3-task7 与 headless quit 全部通过。
+- 用户要求 player 使用的图片切片独立保存，避免继续依赖 `player_profile.png` 的 `Sprite2D.region_rect`。
+- 已按 TDD 更新并验证 RED：`tests/task7_player_decal_sheet_checks.gd` 要求 `Player.tscn` 主体部件使用 `res://resources/player/parts/*.png`，且 `region_enabled == false`；初始运行按预期失败，原因是主体部件仍引用 `res://docs/assets/player_profile.png`。
+- 已导出 13 个独立 PNG 切片到 `resources/player/parts/`：torso/front+side、head/front+side、eyes、brows、mouth、arm、hand、leg、boot，并通过 `godot --headless --import --quit` 生成 `.png.import`。
+- 已更新 `scenes/Player.tscn`：主体 body/head/eyes/brows/mouth/arms/hands/legs/boots 改用独立 PNG `ExtResource`，移除运行时 player 主体 sprite 的 atlas region 配置；`scenes/ui/PlayerItemSheet.tscn` 仍保留 UI/item sheet region 用法。
+- 已验证：`tests/task7_player_decal_sheet_checks.gd`、`task3_player_checks.gd`、`task4_toon_animator_checks.gd`、`task5_readability_checks.gd`、`task6_miner_visual_checks.gd`、`godot --headless --quit` 全部通过。
+- 用户指出 `docs/assets/player_profile.png` 的背景透明是假的；已确认源图背景为白/浅灰棋盘格实心像素。
+- 已新增 RED 检查：`task7_player_decal_sheet_checks.gd` 采样 `player_profile.png` 背景 alpha，并检查主体切片保留真实透明背景；初始运行按预期失败，源图与切片 alpha 均为 1。
+- 已新增并运行 `scripts/tools/fix_player_profile_transparency_and_slice.gd`：对源图执行边缘 flood-fill，将连通画布边缘的白/浅灰假透明背景转为 alpha 0，再重新导出 13 个 player part PNG。
+- 已重新执行 `godot --headless --import --quit` 更新 `player_profile.png` 与 `resources/player/parts/*.png` 导入数据。
+- 已验证：GDScript LSP 对 `tests/task7_player_decal_sheet_checks.gd` 与 `scripts/tools/fix_player_profile_transparency_and_slice.gd` 无诊断；Godot `task7`、`task3`、`task4`、`task5`、`task6` 与 `godot --headless --quit` 全部通过。
