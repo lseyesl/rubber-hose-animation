@@ -14,3 +14,9 @@
 - 已将局部增强边界记录为：主角色 procedural 不替换，sprite/decal 只用于视觉贴片、UI portrait 与道具 icon。
 - 用户确认先做 B：局部 decal + UI sprite sheet；如果效果不够再切到 C：动作关键帧 decal。
 - 已写入 B/C 设计文档：`docs/superpowers/specs/2026-05-12-player-local-sprite-decal-enhancement.md`。
+- 已提交前置规划/资源改动：
+  - `85bbac2 Update player reference assets`
+  - `85c1434 Add player display planning docs`
+  - `18b5582 Add player planning progress records`
+- 已按 TDD 实施 B 方案：先新增失败测试 `tests/task7_player_decal_sheet_checks.gd`，确认缺少 decal 和 UI sheet；再补 `Player.tscn` local decals 与 `scenes/ui/PlayerItemSheet.tscn`。
+- 验证通过：`task3_player_checks.gd`、`task4_toon_animator_checks.gd`、`task5_readability_checks.gd`、`task6_miner_visual_checks.gd`、`task7_player_decal_sheet_checks.gd`、`godot --headless --quit`。

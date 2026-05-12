@@ -11,6 +11,7 @@
 - 阶段 5：整理并写入正式设计文档 — complete
 - 阶段 6：按“局部 sprite/decal 增强”重新收束方案 — complete
 - 阶段 7：将 B/C 阶段方案写入文档 — complete
+- 阶段 8：实施 B 方案 local decal + UI sprite sheet — complete
 
 ## 约束与决策
 - 先做方案规划，不直接修改 player 实现。
@@ -28,6 +29,11 @@
 - 主体仍由 `VisualRoot`、`ToonAnimator`、`Body/Head/Limbs/Feet` 程序节点驱动。
 - sprite/decal 只用于：表情、头灯/头盔细节、手套掌纹、靴子纹理、背带裤布料磨损、UI portrait、道具 icon。
 - 不使用 sprite sheet 替换完整 player 动作。
+
+## B 方案实施结果
+- `Player.tscn` 新增 head/front/side/boot local decal overlay，不替换核心程序锚点。
+- 新增 `scenes/ui/PlayerItemSheet.tscn`，使用 `player_profile.png` region 切片提供 portrait 和 item icons。
+- 新增 `tests/task7_player_decal_sheet_checks.gd` 锁定 B 方案视觉契约。
 
 ## 输出文件
 - `docs/superpowers/specs/2026-05-12-player-display-replan.md`
