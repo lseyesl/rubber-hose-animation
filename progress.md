@@ -20,3 +20,5 @@
   - `18b5582 Add player planning progress records`
 - 已按 TDD 实施 B 方案：先新增失败测试 `tests/task7_player_decal_sheet_checks.gd`，确认缺少 decal 和 UI sheet；再补 `Player.tscn` local decals 与 `scenes/ui/PlayerItemSheet.tscn`。
 - 验证通过：`task3_player_checks.gd`、`task4_toon_animator_checks.gd`、`task5_readability_checks.gd`、`task6_miner_visual_checks.gd`、`task7_player_decal_sheet_checks.gd`、`godot --headless --quit`。
+- 用户反馈 B 方案仍不满足：程序化主体会导致 player 与概念图差距过大；手、胳膊、头、眼睛、眉毛、嘴、躯干、腿等都应使用图片实现。
+- 已新增 D 方案设计文档：`docs/superpowers/specs/2026-05-12-player-image-part-rig-redesign.md`。

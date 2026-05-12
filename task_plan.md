@@ -12,13 +12,14 @@
 - 阶段 6：按“局部 sprite/decal 增强”重新收束方案 — complete
 - 阶段 7：将 B/C 阶段方案写入文档 — complete
 - 阶段 8：实施 B 方案 local decal + UI sprite sheet — complete
+- 阶段 9：根据用户反馈改向 D image-part rig — in_progress
 
 ## 约束与决策
 - 先做方案规划，不直接修改 player 实现。
 - 以图片中的 rubber-hose 矿工为视觉基准。
 - 需要保留：大头、小躯干、弹簧四肢、白手套、厚靴、矿工头盔头灯、蓝色背带裤、暖色矿工道具。
 - 后续方案必须兼顾游戏内小尺寸可读性。
-- 保持现有 hybrid procedural 方案：`Player.tscn` 的 `VisualRoot`、`FrontDeco`、`SideDeco` 与 `ToonAnimator` 继续承担显示逻辑。
+- 更新：此前 hybrid procedural 方案不足以贴近概念图。新的 D 方案要求可见主体部件使用图片，程序只做 rig/动画控制。
 - 不改 `player_controller.gd`、碰撞体、surface movement 逻辑；player 显示方案只影响视觉层。
 
 ## 待确认
@@ -35,9 +36,15 @@
 - 新增 `scenes/ui/PlayerItemSheet.tscn`，使用 `player_profile.png` region 切片提供 portrait 和 item icons。
 - 新增 `tests/task7_player_decal_sheet_checks.gd` 锁定 B 方案视觉契约。
 
+## D 方案新决策
+- 用户明确要求：手、胳膊、头、眼睛、眉毛、嘴、躯干、腿等主体部件都应使用图片实现。
+- 旧 B/C 文档作为历史记录保留，但后续实现以 D image-part rig 为准。
+- `ToonAnimator` 应从“修改 polygon/line 外形”转为“驱动 Node2D/Sprite2D 部件 rig”。
+
 ## 输出文件
 - `docs/superpowers/specs/2026-05-12-player-display-replan.md`
 - `docs/superpowers/specs/2026-05-12-player-local-sprite-decal-enhancement.md`
+- `docs/superpowers/specs/2026-05-12-player-image-part-rig-redesign.md`
 
 ## 遇到的错误
 | 错误 | 尝试次数 | 解决方案 |
