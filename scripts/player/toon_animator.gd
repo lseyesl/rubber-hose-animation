@@ -50,8 +50,8 @@ var _side_base_body_position := Vector2(2, 0)
 var _side_base_head_position := Vector2(4, -39)
 var _side_base_left_arm_position := Vector2(2, -16)
 var _side_base_right_arm_position := Vector2(4, -16)
-var _side_base_left_hand_position := Vector2(22, 24)
-var _side_base_right_hand_position := Vector2(36, 30)
+var _side_base_left_hand_position := Vector2(6, 18)
+var _side_base_right_hand_position := Vector2(14, 18)
 var _side_base_left_leg_position := Vector2(-1, 20)
 var _side_base_right_leg_position := Vector2(3, 20)
 var _side_base_left_foot_position := Vector2(-2, 64)
@@ -253,16 +253,30 @@ func _apply_limb_swing(state: StringName, direction: float, speed_ratio: float, 
 	right_arm.rotation = deg_to_rad(swing + drag_bias)
 	left_leg.rotation = deg_to_rad(swing * 0.55)
 	right_leg.rotation = deg_to_rad(-swing * 0.55)
-	left_arm.scale = Vector2(1.0, 1.0 + absf(swing) * 0.008)
-	right_arm.scale = Vector2(1.0, 1.0 + absf(swing) * 0.008)
-	left_leg.scale = Vector2(1.0, 1.0 + absf(swing) * 0.006)
-	right_leg.scale = Vector2(1.0, 1.0 + absf(swing) * 0.006)
+	var mirror_x := _last_mirror_direction if current_view == View.SIDE else 1.0
+	var arm_stretch := 1.0 + absf(swing) * 0.008
+	var leg_stretch := 1.0 + absf(swing) * 0.006
+	left_arm.scale = Vector2(mirror_x, arm_stretch)
+	right_arm.scale = Vector2(mirror_x, arm_stretch)
+	left_leg.scale = Vector2(mirror_x, leg_stretch)
+	right_leg.scale = Vector2(mirror_x, leg_stretch)
 
 	if current_view == View.SIDE:
+		var arm_length := 34.0
+		var left_arm_angle := left_arm.rotation
+		var right_arm_angle := right_arm.rotation
 		if left_hand != null:
-			left_hand.position.y += -swing * 0.35
+			left_hand.position = _base_left_arm_position + Vector2(
+				sin(left_arm_angle) * arm_length,
+				cos(left_arm_angle) * arm_length
+			)
+			left_hand.scale.x = mirror_x
 		if right_hand != null:
-			right_hand.position.y += swing * 0.35
+			right_hand.position = _base_right_arm_position + Vector2(
+				sin(right_arm_angle) * arm_length,
+				cos(right_arm_angle) * arm_length
+			)
+			right_hand.scale.x = mirror_x
 		if side_deco != null:
 			side_deco.position.y = swing * 0.18
 

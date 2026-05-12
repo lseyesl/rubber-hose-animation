@@ -1,10 +1,22 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=19 format=3]
 
 [ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_controller"]
 [ext_resource type="Resource" path="res://resources/surfaces/normal.tres" id="2_normal"]
 [ext_resource type="Script" path="res://scripts/player/surface_detector.gd" id="3_detector"]
 [ext_resource type="Script" path="res://scripts/player/toon_animator.gd" id="4_toon"]
-[ext_resource type="Texture2D" path="res://docs/assets/player_profile.png" id="5_profile"]
+[ext_resource type="Texture2D" path="res://resources/player/parts/torso_front.png" id="5_torso_front"]
+[ext_resource type="Texture2D" path="res://resources/player/parts/torso_side.png" id="6_torso_side"]
+[ext_resource type="Texture2D" path="res://resources/player/parts/head_front.png" id="7_head_front"]
+[ext_resource type="Texture2D" path="res://resources/player/parts/head_side.png" id="8_head_side"]
+[ext_resource type="Texture2D" path="res://resources/player/parts/eye_left.png" id="9_eye_left"]
+[ext_resource type="Texture2D" path="res://resources/player/parts/eye_right.png" id="10_eye_right"]
+[ext_resource type="Texture2D" path="res://resources/player/parts/brow_left.png" id="11_brow_left"]
+[ext_resource type="Texture2D" path="res://resources/player/parts/brow_right.png" id="12_brow_right"]
+[ext_resource type="Texture2D" path="res://resources/player/parts/mouth.png" id="13_mouth"]
+[ext_resource type="Texture2D" path="res://resources/player/parts/arm_front.png" id="14_arm_front"]
+[ext_resource type="Texture2D" path="res://resources/player/parts/hand_front.png" id="15_hand_front"]
+[ext_resource type="Texture2D" path="res://resources/player/parts/leg_front.png" id="16_leg_front"]
+[ext_resource type="Texture2D" path="res://resources/player/parts/boot_front.png" id="17_boot_front"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_player"]
 radius = 24.0
@@ -106,9 +118,7 @@ position = Vector2(-18, -16)
 
 [node name="ArmSprite" type="Sprite2D" parent="VisualRoot/LeftArm"]
 position = Vector2(-14, 18)
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(151, 299, 108, 176)
+texture = ExtResource("14_arm_front")
 scale = Vector2(0.18, 0.18)
 
 [node name="RightArm" type="Node2D" parent="VisualRoot"]
@@ -116,27 +126,21 @@ position = Vector2(18, -16)
 
 [node name="ArmSprite" type="Sprite2D" parent="VisualRoot/RightArm"]
 position = Vector2(14, 18)
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(151, 299, 108, 176)
+texture = ExtResource("14_arm_front")
 scale = Vector2(-0.18, 0.18)
 
 [node name="LeftHand" type="Node2D" parent="VisualRoot"]
 position = Vector2(-35, 31)
 
 [node name="HandSprite" type="Sprite2D" parent="VisualRoot/LeftHand"]
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(141, 439, 97, 103)
+texture = ExtResource("15_hand_front")
 scale = Vector2(0.2, 0.2)
 
 [node name="RightHand" type="Node2D" parent="VisualRoot"]
 position = Vector2(35, 31)
 
 [node name="HandSprite" type="Sprite2D" parent="VisualRoot/RightHand"]
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(141, 439, 97, 103)
+texture = ExtResource("15_hand_front")
 scale = Vector2(-0.2, 0.2)
 
 [node name="LeftLeg" type="Node2D" parent="VisualRoot"]
@@ -144,9 +148,7 @@ position = Vector2(-10, 20)
 
 [node name="LegSprite" type="Sprite2D" parent="VisualRoot/LeftLeg"]
 position = Vector2(0, 20)
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(238, 555, 62, 76)
+texture = ExtResource("16_leg_front")
 scale = Vector2(0.22, 0.22)
 
 [node name="RightLeg" type="Node2D" parent="VisualRoot"]
@@ -154,39 +156,29 @@ position = Vector2(10, 20)
 
 [node name="LegSprite" type="Sprite2D" parent="VisualRoot/RightLeg"]
 position = Vector2(0, 20)
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(238, 555, 62, 76)
+texture = ExtResource("16_leg_front")
 scale = Vector2(-0.22, 0.22)
 
 [node name="Body" type="Node2D" parent="VisualRoot"]
 
 [node name="TorsoSprite" type="Sprite2D" parent="VisualRoot/Body"]
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(242, 294, 149, 264)
+texture = ExtResource("5_torso_front")
 scale = Vector2(0.24, 0.24)
 
 [node name="FrontSprite" type="Sprite2D" parent="VisualRoot/Body"]
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(242, 294, 149, 264)
+texture = ExtResource("5_torso_front")
 scale = Vector2(0.24, 0.24)
 
 [node name="SideSprite" type="Sprite2D" parent="VisualRoot/Body"]
 visible = false
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(676, 290, 116, 278)
+texture = ExtResource("6_torso_side")
 scale = Vector2(0.23, 0.23)
 
 [node name="LeftFoot" type="Node2D" parent="VisualRoot"]
 position = Vector2(-15, 64)
 
 [node name="BootSprite" type="Sprite2D" parent="VisualRoot/LeftFoot"]
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(176, 601, 125, 113)
+texture = ExtResource("17_boot_front")
 scale = Vector2(0.22, 0.22)
 
 [node name="LocalDecals" type="Node2D" parent="VisualRoot/LeftFoot"]
@@ -203,9 +195,7 @@ end_cap_mode = 2
 position = Vector2(15, 64)
 
 [node name="BootSprite" type="Sprite2D" parent="VisualRoot/RightFoot"]
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(176, 601, 125, 113)
+texture = ExtResource("17_boot_front")
 scale = Vector2(-0.22, 0.22)
 
 [node name="LocalDecals" type="Node2D" parent="VisualRoot/RightFoot"]
@@ -222,22 +212,16 @@ end_cap_mode = 2
 position = Vector2(0, -39)
 
 [node name="HeadSprite" type="Sprite2D" parent="VisualRoot/Head"]
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(197, 49, 239, 268)
+texture = ExtResource("7_head_front")
 scale = Vector2(0.24, 0.24)
 
 [node name="FrontSprite" type="Sprite2D" parent="VisualRoot/Head"]
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(197, 49, 239, 268)
+texture = ExtResource("7_head_front")
 scale = Vector2(0.24, 0.24)
 
 [node name="SideSprite" type="Sprite2D" parent="VisualRoot/Head"]
 visible = false
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(618, 59, 245, 261)
+texture = ExtResource("8_head_side")
 scale = Vector2(0.24, 0.24)
 
 [node name="Eyes" type="Node2D" parent="VisualRoot/Head"]
@@ -247,18 +231,14 @@ position = Vector2(1, -1)
 position = Vector2(-8, 0)
 
 [node name="LeftEyeSprite" type="Sprite2D" parent="VisualRoot/Head/Eyes/LeftEye"]
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(284, 158, 39, 76)
+texture = ExtResource("9_eye_left")
 scale = Vector2(0.19, 0.19)
 
 [node name="RightEye" type="Node2D" parent="VisualRoot/Head/Eyes"]
 position = Vector2(9, 0)
 
 [node name="RightEyeSprite" type="Sprite2D" parent="VisualRoot/Head/Eyes/RightEye"]
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(341, 158, 34, 73)
+texture = ExtResource("10_eye_right")
 scale = Vector2(0.19, 0.19)
 
 [node name="Eyebrows" type="Node2D" parent="VisualRoot/Head"]
@@ -266,25 +246,19 @@ position = Vector2(1, -11)
 
 [node name="LeftBrowSprite" type="Sprite2D" parent="VisualRoot/Head/Eyebrows"]
 position = Vector2(-8, 0)
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(273, 142, 52, 27)
+texture = ExtResource("11_brow_left")
 scale = Vector2(0.14, 0.14)
 
 [node name="RightBrowSprite" type="Sprite2D" parent="VisualRoot/Head/Eyebrows"]
 position = Vector2(9, 0)
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(325, 142, 52, 27)
+texture = ExtResource("12_brow_right")
 scale = Vector2(0.14, 0.14)
 
 [node name="Mouth" type="Node2D" parent="VisualRoot/Head"]
 position = Vector2(1, 13)
 
 [node name="MouthSprite" type="Sprite2D" parent="VisualRoot/Head/Mouth"]
-texture = ExtResource("5_profile")
-region_enabled = true
-region_rect = Rect2(283, 254, 78, 66)
+texture = ExtResource("13_mouth")
 scale = Vector2(0.2, 0.2)
 
 [node name="LocalDecals" type="Node2D" parent="VisualRoot/Head"]
