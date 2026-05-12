@@ -62,6 +62,26 @@ func _check_player_local_decals() -> void:
 	_assert(player.get_node_or_null("VisualRoot/LeftFoot/BootSprite") is Sprite2D, "Left boot should be image-based")
 	_assert(player.get_node_or_null("VisualRoot/RightFoot/BootSprite") is Sprite2D, "Right boot should be image-based")
 
+	_assert_tight_region(player, "VisualRoot/Body/TorsoSprite", Vector2(165, 285))
+	_assert_tight_region(player, "VisualRoot/Body/FrontSprite", Vector2(165, 285))
+	_assert_tight_region(player, "VisualRoot/Body/SideSprite", Vector2(125, 285))
+	_assert_tight_region(player, "VisualRoot/Head/HeadSprite", Vector2(250, 275))
+	_assert_tight_region(player, "VisualRoot/Head/FrontSprite", Vector2(250, 275))
+	_assert_tight_region(player, "VisualRoot/Head/SideSprite", Vector2(250, 270))
+	_assert_tight_region(player, "VisualRoot/Head/Eyes/LeftEye/LeftEyeSprite", Vector2(45, 80))
+	_assert_tight_region(player, "VisualRoot/Head/Eyes/RightEye/RightEyeSprite", Vector2(45, 80))
+	_assert_tight_region(player, "VisualRoot/Head/Eyebrows/LeftBrowSprite", Vector2(110, 30))
+	_assert_tight_region(player, "VisualRoot/Head/Eyebrows/RightBrowSprite", Vector2(110, 30))
+	_assert_tight_region(player, "VisualRoot/Head/Mouth/MouthSprite", Vector2(85, 70))
+	_assert_tight_region(player, "VisualRoot/LeftArm/ArmSprite", Vector2(115, 190))
+	_assert_tight_region(player, "VisualRoot/RightArm/ArmSprite", Vector2(115, 190))
+	_assert_tight_region(player, "VisualRoot/LeftHand/HandSprite", Vector2(105, 110))
+	_assert_tight_region(player, "VisualRoot/RightHand/HandSprite", Vector2(105, 110))
+	_assert_tight_region(player, "VisualRoot/LeftLeg/LegSprite", Vector2(70, 90))
+	_assert_tight_region(player, "VisualRoot/RightLeg/LegSprite", Vector2(70, 90))
+	_assert_tight_region(player, "VisualRoot/LeftFoot/BootSprite", Vector2(140, 120))
+	_assert_tight_region(player, "VisualRoot/RightFoot/BootSprite", Vector2(140, 120))
+
 	player.free()
 
 
@@ -92,6 +112,14 @@ func _check_item_sheet_scene() -> void:
 func _assert(condition: bool, message: String) -> void:
 	if not condition:
 		failures.append(message)
+
+
+func _assert_tight_region(root_node: Node, path: String, max_size: Vector2) -> void:
+	var sprite := root_node.get_node_or_null(path) as Sprite2D
+	if sprite == null:
+		return
+	_assert(sprite.region_enabled, "%s should use a cropped atlas region" % path)
+	_assert(sprite.region_rect.size.x <= max_size.x and sprite.region_rect.size.y <= max_size.y, "%s region should be tightly cropped, got %s max %s" % [path, sprite.region_rect.size, max_size])
 
 
 func _finish() -> void:
